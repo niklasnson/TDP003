@@ -25,7 +25,9 @@ def get_project(db, id):
 def search(db, sort_by='start_date', 
            sort_order='desc',
            techniques=None, search=None, search_fields=None):
-    pass
+    search_results = []
+    search_results = free_search(db, search, search_fields)
+    return search_results
 
 def get_techniques(db):
     temp = []
@@ -48,7 +50,28 @@ def get_technique_stats(db):
                 temp[item].append({'id':i["project_no"], "name":i["project_name"]})
     return temp
                 
-#---------homemade functions-------    
+#---------homemade functions-------
+
+def free_search(db, search, search_fields):
+    free_list = []
+    if search_fields == None:
+        for i in db:
+            for item in i.items():
+                if item[1] == search:
+                    free_list.append(i)
+                elif item[0] == search:
+                    free_list.append(i)
+
+    elif search_fields == '':
+        return None
+
+    else:
+        for i in db:
+            for item in i.items():
+                if item[0] == search_fields and item[1] == search:
+                    free_list.append(i)
+    
+    return free_list
                 
     
 
@@ -61,6 +84,9 @@ def main():
     get_project(db, 2)
     get_techniques(db)
     get_technique_stats(db)
+    search(db, sort_by='start_date', 
+           sort_order='desc',
+           techniques=None, search=None, search_fields=None)
 
 
 if __name__ == "__main__":
