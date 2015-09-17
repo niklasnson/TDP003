@@ -1,5 +1,15 @@
 
-on a mac:  
 
-sudo pip install virtualenv
-. venv/bin/activate
+
+If installing on a mac do the following: 
+
+  brew install python3 
+
+  pip3 install virtualenv 
+
+  cd my_project 
+
+  virtualenv venv
+  
+  . venv/bin/activate
+
