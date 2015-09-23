@@ -1,0 +1,32 @@
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 0.9em;
+}
+
+main {
+  margin: 0 auto;
+  max-width: 64em;
+}
+
+header {
+  margin: 2em 0;
+  padding: 0.5em 0;
+  border-bottom: solid 0.3em #eee;
+}
+
+header > span {
+  font-weight: 600;
+}
+
+header > nav {
+  float: right;
+}
+
+nav a {
+  padding-right: 1em;
+}
+
+nav a:last-child {
+  padding-right: 0 !important;  
+}
+
