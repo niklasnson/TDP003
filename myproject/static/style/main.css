@@ -41,3 +41,85 @@ footer > div {
   float: left;
   color: #949494;
 }
+
+
+/* ====================================================================================================
+
+    
+                                                projects.html
+
+
+   ==================================================================================================== */
+   
+div.project {
+    width: 46%; 
+    float: left; 
+    color: #000 !important; 
+    background-color: #EAEAEA; 
+    margin: 2% 1%;
+    padding: 0;
+}
+
+div.project > div.project-inner {
+    width: 100%;
+    min-height: 100px;
+} 
+
+div.project > div.project-inner img {
+
+    width: 100px; 
+    height: 100px;
+    float: left;
+    margin: 0em 2em;
+}
+
+div.project > div.meta {
+    
+    padding: 0.3em 0.3em;
+
+}
+
+div.project > div.meta ul {
+   list-style: none; 
+   margin: 0; 
+   padding: 0;
+}
+
+div.project > div.meta ul > li {
+    float: left;
+    padding: 0.4em;
+    margin: 0.3em;
+    background-color: #000;
+    color: #fff;
+    text-transform: lowercase;
+}
+
+div.project > div.meta ul > li:first-child {
+    margin-left: 0;
+}
+
+
+
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+

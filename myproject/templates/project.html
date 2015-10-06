@@ -1,0 +1,18 @@
+{% extends "application.html" %}
+
+{% block content %}
+ 
+    <article> 
+        <center>
+            <h1>{{ project.project_name }}</h1>
+            <img src='{{ project.big_image }}' height='400px' width='auto' />
+        </center>
+    </article>
+
+
+    {{ project }}
+
+{% endblock %}
+
+
+
