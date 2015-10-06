@@ -11,11 +11,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("index.html", db = data.load("data.json"))
+    return render_template("index.html", db = data.load("data.json"), config= config.load())
 
 @app.route("/projects")
 def projects():
-    return render_template("projects.html", projects= data.load('data.json'))
+    return render_template("projects.html", projects= data.load('data.json'), config= config.load())
 
 @app.route('/project/<id>')
 def project(id):
@@ -23,7 +23,7 @@ def project(id):
 
 @app.route("/techniques")
 def techniques():
-    return render_template("index.html")
+    return render_template('index.html', config= config.load())
 
 if __name__ == "__main__":
     app.run(debug=True)
