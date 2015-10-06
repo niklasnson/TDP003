@@ -30,3 +30,14 @@ nav a:last-child {
   padding-right: 0 !important;  
 }
 
+footer {
+  margin: 2em 0;
+  padding: 0.5em 0;
+  border-top: solid 0.3em #eee;
+}
+
+footer > div {
+  width: 33.33%;
+  float: left;
+  color: #949494;
+}

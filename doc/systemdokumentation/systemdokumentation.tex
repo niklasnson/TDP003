@@ -1,0 +1,147 @@
+\documentclass{TDP003mall}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{listings}
+\definecolor{grey}{gray}{0.9}
+
+
+\lstset{%
+language=Lisp,
+basicstyle=\small,
+backgroundcolor=\color{grey},
+mathescape=true}
+
+\newcommand{\version}{Version 0.5}
+\author{IP1 2015}
+\title{Installationsmanual \\för Portföljsystem}
+\date{2015-09-21}
+\rhead{IP1 2015}
+
+
+
+\begin{document}
+\projectpage
+\section{Revisionshistorik}
+\begin{table}[!h]
+\begin{tabularx}{\linewidth}{|l|X|l|}\hline
+Ver. & Revisionsbeskrivning & Datum \\\hline
+0.5 & Korrekturläst och åtgärdat språkliga fel & 150925\\\hline
+0.4 & Automatisk och manuell installation fungerar & 150923\\\hline
+0.3 & Bugtestat manualen & 150923 \\\hline
+0.2 & Template med grunduppgifter skapad & 150921 \\\hline
+0.1 & Skapat Flask-avsnittet  & 150921 \\\hline
+
+
+
+
+\end{tabularx}
+\end{table}
+
+\section{Introduktion/Förutsättningar}
+
+I denna installationsmanual kommer ni få reda på hur man laddar ner, installerar och använder vårt portfoliosystem.\\\\Denna installationsmanual förutsätter att ni redan har:
+
+\begin{itemize}
+  \item En dator med Linux Mint 17 "Qiana" installerat
+  \item Tillgång till en root-användare på den nämnda datorn
+  \item En internetuppkoppling
+\end{itemize}Det är rekommenderat att ni har lite erfarenhet inom Bash då det kommer att förenkla installationen samt användandet av portföljen
+Om ni inte har det så kan ni läsa kapitel två på nedanstående länk, som är en guide över de viktigaste kommandona: 
+\url{http://www.tldp.org/LDP/intro-linux/html/sect_02_01.html}
+
+\section{Installera Flask (och Jinja)}
+
+Öppna upp terminalen, förslagsvis via startmenyn.\\
+I sektionen nedan går vi genom både hur man genomför en automatisk installation, eller en manuell installation. Text med grå bakgrund är kommandon som skall skrivas in i terminalen. 
+\subsection{Automatisk installation}
+
+\begin{enumerate}
+  \item Då vi i resten av guiden förutsätter att vi arbetar i ett fullt uppdaterat system, kör följande kommando.
+      \begin{lstlisting}
+  sudo apt-get update  
+      \end{lstlisting}
+ \item För att kunna ladda ner filer direkt från terminalen: Installera ``wget''. 
+    \begin{lstlisting}
+  sudo apt-get install wget
+    \end{lstlisting}
+  \item Ladda nu ned installationsfilen för Flask med ``wget''.
+      \begin{lstlisting}
+  wget http://www-und.ida.liu.se/~johbo462/TDP003/flaskinstall/install.sh
+      \end{lstlisting}
+  \item Kör sedan filen för att påbörja den automatiska installationen av Flask.
+      \begin{lstlisting}
+  sudo sh install.sh
+      \end{lstlisting}
+Din terminal fungerar nu som en virtuell server.\pagebreak
+
+\end{enumerate}
+
+\subsection{Manuell installation}
+
+\begin{enumerate}
+  \item Se till att du startar från din hemkatalog.
+          \begin{lstlisting}
+  cd  
+      \end{lstlisting}
+  \item Då vi i resten av guiden förutsätter att vi arbetar i ett fullt uppdaterat system, kör följande kommando.
+      \begin{lstlisting}
+  sudo apt-get update  
+      \end{lstlisting}
+  \item För att kunna ladda ner filer direkt från terminalen: Installera ``wget''. 
+    \begin{lstlisting}
+  sudo apt-get install wget
+    \end{lstlisting}
+  \item Skapa en mapp som heter flaskinstall där installationsfilen kommer hamna.
+    \begin{lstlisting}
+  mkdir flaskinstall
+    \end{lstlisting}
+  \item Öppna nu mappen ``flaskinstall'' du precis skapade.
+    \begin{lstlisting}
+  cd flaskinstall
+    \end{lstlisting}
+  \item Installera nu inställningsverktyg för Python. De behövs för resten av stegen.
+    \begin{lstlisting}
+  sudo apt-get install python-setuptools
+    \end{lstlisting}
+  \item Ladda ner filen get-pip.py med ``wget''.
+    \begin{lstlisting}
+  wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+    \end{lstlisting}
+  \item Öppna pythonfilen som installerar pip.
+    \begin{lstlisting}
+  sudo python3 get-pip.py
+    \end{lstlisting}
+  \item Installera senaste pip-versionen.
+    \begin{lstlisting}
+  sudo pip install -U pip
+    \end{lstlisting}
+  \item Installera Flask där Jinja2 ingår. 
+    \begin{lstlisting}
+  sudo pip3.4 install flask
+    \end{lstlisting}
+  \item Ladda ner test-filen för Flask med ``wget''. 
+    \begin{lstlisting}
+  wget http://www-und.ida.liu.se/~johbo462/TDP003/flaskinstall/test-flask.py
+    \end{lstlisting}
+  \item Kör test-filen för att starta servern. 
+    \begin{lstlisting}
+  python3 test-flask.py
+    \end{lstlisting}
+
+Din terminal fungerar nu som en virtuell server. 
+\end{enumerate}
+
+\section{Testa om installationen lyckades}
+
+\begin{enumerate}
+  \item Öppna din webbläsare.
+  \item Skriv in följande i adressfältetet: 127.0.0.1:5000
+
+Om det står ``flask hälsar dig välkommen'' i din webbläsare har allt fungerat som det ska.\\
+Grattis!
+% det mesta är täckt i de andra commitsen, men en fin kommentar skadar inte!
+% Rättstavade jättemycket. Vi är bäst. Bra jobbat allihopa, dasawrap!
+\end{enumerate}
+
+
+\end{document}
