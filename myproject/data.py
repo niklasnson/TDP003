@@ -32,9 +32,10 @@ def search(db, sort_by='start_date',
    
     search_results = []
     search_results = get_all_data(db, search, search_fields)
-    if techniques != None and techniques != []:
-        search_results = techs_used(search_results, techniques)
-    sort_data(search_results, sort_by, sort_order)
+    if search_results != None:
+        if techniques != None and techniques != []:
+            search_results = techs_used(search_results, techniques)
+        sort_data(search_results, sort_by, sort_order)
     return search_results
 
 def get_techniques(db):
@@ -75,6 +76,8 @@ def get_all_data(db, search, search_fields):
     if search_fields == None:
         for i in db:
             for item in i.items():
+                if isinstance(item[1], str):
+                    item[1].lower
                 if item[1] == search:
                     free_list.append(i)
                 elif item[0] == search:
@@ -96,7 +99,11 @@ def get_all_data(db, search, search_fields):
                     elif isinstance(item[1], str):
                         if item[0].lower() == j.lower() and item[1].lower() == search.lower():
                             free_list.append(project)
-    return free_list
+    
+    if free_list != []:
+        return free_list 
+    else: return None
+
 
 def sort_data(data, sort_by="project_no", sort_order ='desc'):
     '''this function sorts the data that the search function gathered.'''
@@ -110,7 +117,8 @@ def techs_used(search, techs):
     for i in search:
         for tech in techs: 
             if tech in i['techniques_used']:
-                temp.append(i)
+                if i not in temp:
+                    temp.append(i)
     return temp
 
 def get_sort_order(value):

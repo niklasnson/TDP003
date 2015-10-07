@@ -4,12 +4,12 @@
   
 
 <section class="search">
-    <form action="search">
-        <input name="text" type="text">
+    <form action="search" method="POST">
+        <input name="searchfor" type="text" value="{{ searchfor }}">
 
         <ul class="teq-list">
             {% for item in technics %}
-                <li><input type="checkbox" name="{{ item.lower() }}" value="{{ item.lower() }}"><a href="/search/{{ item.lower() }}">{{ item.lower() }}</a></span></li>
+            <li><input type="checkbox" name="techniques" value="{{ item.lower() }}"{% if item in techniques %} checked {% endif %}><a href="/search/{{ item.lower() }}">{{ item.lower() }}</a></span></li>
             {% endfor %}
         </ul>
 
@@ -17,8 +17,11 @@
 
 </section>
 
-<section class="search-result">
+{{ techniques }}
 
+
+{% if result != None %}
+<section class="search-result">
         {% for item in result %}
             <article class="project-as-list clearfix">
                 <header>
@@ -41,10 +44,12 @@
                 </footer>
             </article>
         {% endfor %}
-
-
-    {{ result }}
     
 </section>
 
+{% else %}
+
+Hittar inget! 
+{% endif %}
 {% endblock %}
+
