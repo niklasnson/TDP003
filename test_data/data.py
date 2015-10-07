@@ -28,7 +28,7 @@ def get_project(db, id):
 def search(db, sort_by='start_date', 
            sort_order='desc',
            techniques=None, search=None, search_fields=None):
-'''search in the database by entering a search word, the field you want to search in. the function also sorts the fetched data by ascending or descending order. It can also check for specific techniques in each project that were fetched with the search function.'''
+    '''search in the database by entering a search word, the field you want to search in. the function also sorts the fetched data by ascending or descending order. It can also check for specific techniques in each project that were fetched with the search function.'''
    
     search_results = []
     search_results = get_all_data(db, search, search_fields)
@@ -54,12 +54,9 @@ def get_technique_stats(db):
     temp = {}
     for item in techs:
         temp.update({item: []})
-        
         for i in db:
             if item in i["techniques_used"]:
-                
                 temp[item].append({'id':i["project_no"], "name":i["project_name"]})
-    
         temp[item] = sorted(temp[item], key=itemgetter('id'))
     return temp
                 
@@ -100,17 +97,16 @@ def get_all_data(db, search, search_fields):
 
 def sort_data(data, sort_by="project_no", sort_order ='desc'):
     '''this function sorts the data that the search function gathered.'''
-    sort_order = get_sort_order(sort_order)
-    data.sort(key=itemgetter(sort_by), reverse=sort_order)
-    print(data)
-    
+    data.sort(key=itemgetter(sort_by), reverse=(sort_order=='desc'))
+
 def techs_used(search, techs):
     '''this function checks if the projects that the search function gathered have certain techniques.'''
     temp = []
     for i in search:
         for tech in techs: 
             if tech in i['techniques_used']:
-                temp.append(i)
+                if i not in temp:
+                    temp.append(i)
     return temp
 
 def get_sort_order(value):
@@ -123,14 +119,12 @@ def get_sort_order(value):
 #------bullshit functions-------
 
 def main():
-    db = load("data.json")
+    db = load("data1.json")
     #get_project_count(db)
     #get_project(db, 2)
     #get_techniques(db)
     #get_technique_stats(db)
-    search(db, sort_by='start_date', 
-           sort_order='desc',
-           techniques=[], search='okänt', search_fields=["project_no","project_name","course_name"])
+    print(search(db, sort_by='start_date', sort_order='desc', techniques=["git", "c++","gimp","git","latex"], search='Tetris Kopia', search_fields=None))
 
 
 if __name__ == "__main__":
