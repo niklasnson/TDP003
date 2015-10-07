@@ -1,16 +1,14 @@
 {% extends "application.html" %}
 
 {% block content %}
-    
-    <div class="clearfix">
+    <div>
         {% for project in projects %}
-            <a href="project/{{ project.project_no }}">
+            <a href='project/{{ project.project_no }}'>
                 <div class="project">
                     <div class="project-inner">
                         <img src="{{ project.small_image }}">
                         <h3>{{ project.project_name }}</h3>
                         <p>{{ project.short_description }}</p>
-
                     </div>
                     <div class="meta">
                         <ul class="teq">
@@ -23,5 +21,4 @@
             </a>
         {% endfor %}
     </div>
-
 {% endblock %}

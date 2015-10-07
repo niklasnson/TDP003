@@ -25,5 +25,9 @@ def project(id):
 def techniques():
     return render_template('index.html', config= config.load())
 
+@app.route("/search")
+def search(): 
+    return render_template('search.html', config= config.load(), technics= data.get_techniques(data.load('data.json')), result= data.load('data.json')) 
+
 if __name__ == "__main__":
     app.run(debug=True)

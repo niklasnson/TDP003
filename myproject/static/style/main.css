@@ -1,3 +1,11 @@
+/* ====================================================================================================
+
+    
+                                                html objects 
+
+
+   ==================================================================================================== */
+
 body {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 0.9em;
@@ -30,6 +38,10 @@ nav a:last-child {
   padding-right: 0 !important;  
 }
 
+main {
+    display: block;
+}
+
 footer {
   margin: 2em 0;
   padding: 0.5em 0;
@@ -43,6 +55,97 @@ footer > div {
 }
 
 
+a {
+    color: #4078c0;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+article.project-as-list {
+    display: inline-block;
+    width: 49%;
+}
+
+article.project-as-list header {
+    background-color: #F9F9F9;
+    border-bottom: none;
+}
+
+article.project-as-list a {
+    color: #000; 
+    font-size: 1.2em;
+    font-weight: 800;
+}
+
+
+article.project-as-list div.project-container {
+    padding: 0;
+}
+
+article.project-as-list div.project-container div.content {
+    padding: 0;
+}
+
+article.project-as-list div.project-container div.content img {
+    float: left;
+}
+
+
+article.project-as-list footer {
+    background-color: #F2F2F2;
+    border-top: none;
+}
+
+
+
+
+
+/* ====================================================================================================
+
+    
+                                                search.html
+
+
+   ==================================================================================================== */
+ 
+section.search {
+    text-align: center;
+}
+
+section.search input[type=text]{
+    line-height: 26px !important;
+    height: 26px !important;
+    width: 80%;
+}
+
+section.search input[type=checkbox]{
+
+}
+
+ul.teq-list {
+    padding: 0; 
+    margin: 1.6em 0 0 0; 
+    list-style: none;
+
+}
+
+ul.teq-list li {
+    display: inline-block;
+}
+
+ul.teq-list span {
+    padding-right: 0.7em;    
+}
+
+section.search-result {
+    margin: 1.6em 0 0 0; 
+}
+
+
+
 /* ====================================================================================================
 
     
@@ -53,16 +156,18 @@ footer > div {
    
 div.project {
     width: 46%; 
-    float: left; 
+    display: inline-block;
+    vertical-align: top;
     color: #000 !important; 
     background-color: #EAEAEA; 
     margin: 2% 1%;
     padding: 0;
+    border-radius: 15px 0 15px 0;
 }
 
 div.project > div.project-inner {
     width: 100%;
-    min-height: 100px;
+    min-height: 110px;
 } 
 
 div.project > div.project-inner img {
@@ -74,9 +179,7 @@ div.project > div.project-inner img {
 }
 
 div.project > div.meta {
-    
     padding: 0.3em 0.3em;
-
 }
 
 div.project > div.meta ul {
@@ -86,12 +189,14 @@ div.project > div.meta ul {
 }
 
 div.project > div.meta ul > li {
-    float: left;
+    display: inline-block;
     padding: 0.4em;
     margin: 0.3em;
     background-color: #000;
     color: #fff;
     text-transform: lowercase;
+    min-width: 50px;
+    text-align: center;
 }
 
 div.project > div.meta ul > li:first-child {

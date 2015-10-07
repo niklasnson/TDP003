@@ -11,15 +11,16 @@
     <header>
         <span>{{ config.title }}</span>
       <nav>
-        <a href="{{ url_for('index') }}">Home</a>
-        <a href="{{ url_for('projects') }}">Projects</a>
-        <a href="{{ url_for('techniques') }}">Techniques</a>
+        <a href="{{ url_for('index') }}">Hem</a>
+        <a href="{{ url_for('projects') }}">Projekt</a>
+        <a href="{{ url_for('techniques') }}">Tekniker</a>
+        <a href="{{ url_for('search') }}">Sök</a>
       </nav>
     </header>
 
-    <div id="content">
+    <main>
       {% block content %}{% endblock %}
-    </div>
+    </main>
 
     <footer>
       <div>

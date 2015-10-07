@@ -1,0 +1,50 @@
+{% extends "application.html" %}
+
+{% block content %}
+  
+
+<section class="search">
+    <form action="search">
+        <input name="text" type="text">
+
+        <ul class="teq-list">
+            {% for item in technics %}
+                <li><input type="checkbox" name="{{ item.lower() }}" value="{{ item.lower() }}"><a href="/search/{{ item.lower() }}">{{ item.lower() }}</a></span></li>
+            {% endfor %}
+        </ul>
+
+    </form>
+
+</section>
+
+<section class="search-result">
+
+        {% for item in result %}
+            <article class="project-as-list clearfix">
+                <header>
+                    <a href='project/{{ item.project_no }}'>{{ item.project_name }}</a>
+                </header>
+                <div class="project-container"> 
+                    <div class="content">
+                        {% if item.small_image %} <!-- TODO: funkar inte! -->
+                            <img src='{{ item.small_image }}'>
+                        {% endif %}
+                        
+                        {{ item.long_description }}
+                    </div>
+                </div>
+                <footer>
+                    <strong>Tekniker:</strong> 
+                        {% for s in item.techniques_used %}
+                        <span>{{ s.lower() }}</span>
+                        {% endfor %}
+                </footer>
+            </article>
+        {% endfor %}
+
+
+    {{ result }}
+    
+</section>
+
+{% endblock %}
