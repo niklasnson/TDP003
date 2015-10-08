@@ -1,0 +1,19 @@
+<article class="project-as-list">
+    <header>
+        <a href='project/{{ item.project_no }}'>{{ item.project_name }}</a>
+    </header>
+    <div class="project-container"> 
+        <div class="content clearfix">
+           {% if item.small_image %} <!-- TODO: funkar inte! -->
+             <img class="image-thumbnail" src='{{ item.small_image }}'>
+            {% endif %}       
+            {{ item.long_description }}
+        </div>
+    </div>
+    <footer>
+        <strong>Tekniker:</strong> 
+        {% for s in item.techniques_used %}
+            <span>{{ s.lower() }}</span>
+        {% endfor %}
+    </footer>
+</article>

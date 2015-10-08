@@ -9,28 +9,44 @@ import config
 
 app = Flask(__name__)
 
+
+def data_load(): 
+    """ loads the db """
+    return data.load('data.json')
+
+def config_load(): 
+    return config.load('config.json')
+
+
 @app.route("/")
 def index():
+    # get last project from the db
+    last_project= data.search(data_load(), sort_by='start_date', 
+           sort_order='desc',
+           techniques=None, search=None, search_fields=None)[-1]
+
     return render_template("index.html", 
-            db = data.load("data.json"), 
-            config= config.load())
+            db = data_load(), 
+            config= config_load(),
+            data= last_project
+            )
 
 @app.route("/projects")
 def projects():
     return render_template("projects.html", 
-            projects= data.load('data.json'), 
-            config= config.load())
+            projects= data_load(), 
+            config= config_load())
 
 @app.route('/project/<id>')
 def project(id):
     return render_template('project.html', 
-            project= data.get_project(data.load('data.json'), 
+            data= data.get_project(data_load(), 
                 int(id)), 
-            config= config.load())
+            config= config_load())
 
 @app.route("/techniques")
 def techniques():
-    return render_template('index.html', config= config.load())
+    return render_template('techniques.html', config= config_load(), data= data.get_technique_stats(data_load()))
 
 @app.route("/search", methods=['GET', 'POST'])
 def search():
@@ -39,11 +55,11 @@ def search():
         searchfor= request.form['searchfor']
         techniques = request.form.getlist("techniques")
         return render_template('search.html', 
-                config= config.load(), 
-                technics= data.get_techniques(data.load('data.json')), 
+                config= config_load(), 
+                technics= data.get_techniques(data_load()), 
                 techniques = techniques,
                 searchfor = searchfor,
-                result= data.search(data.load('data.json'), 
+                data= data.search(data_load(), 
                     sort_by='start_date', 
                     sort_order='desc',
                     techniques=techniques, 
@@ -52,8 +68,8 @@ def search():
     else:
     # render default page
         return render_template('search.html', 
-                config= config.load(), 
-                technics= data.get_techniques(data.load('data.json'))) 
+                config= config_load(), 
+                technics= data.get_techniques(data_load())) 
 
 if __name__ == "__main__":
     app.run(debug=True)

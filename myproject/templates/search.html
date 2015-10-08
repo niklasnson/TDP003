@@ -3,7 +3,7 @@
 {% block content %}
   
 
-<section class="search">
+<section class="search-do">
     <form action="search" method="POST">
         <input name="searchfor" type="text" value="{{ searchfor }}">
 
@@ -17,39 +17,16 @@
 
 </section>
 
-{{ techniques }}
 
-
-{% if result != None %}
-<section class="search-result">
-        {% for item in result %}
-            <article class="project-as-list clearfix">
-                <header>
-                    <a href='project/{{ item.project_no }}'>{{ item.project_name }}</a>
-                </header>
-                <div class="project-container"> 
-                    <div class="content">
-                        {% if item.small_image %} <!-- TODO: funkar inte! -->
-                            <img src='{{ item.small_image }}'>
-                        {% endif %}
-                        
-                        {{ item.long_description }}
-                    </div>
-                </div>
-                <footer>
-                    <strong>Tekniker:</strong> 
-                        {% for s in item.techniques_used %}
-                        <span>{{ s.lower() }}</span>
-                        {% endfor %}
-                </footer>
-            </article>
+{% if data != None %}
+    <section class="search-result">
+        {% for item in data %}
+            {% include "_project.html" %}
         {% endfor %}
-    
-</section>
-
+    </section>
 {% else %}
-
-Hittar inget! 
+    <h3>Hittade inga projekt som matchade <span class='unimportant'>'{{ searchfor }}'</span></h3> 
 {% endif %}
+
 {% endblock %}
 

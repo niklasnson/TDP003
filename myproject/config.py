@@ -1,7 +1,7 @@
 import json
 
-def load(): 
-    with open('config.json') as config_file:
+def load(filename): 
+    with open(filename) as config_file:
        config = json.load(config_file) 
     return config
 

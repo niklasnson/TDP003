@@ -48,10 +48,22 @@ footer {
   border-top: solid 0.3em #eee;
 }
 
+footer > div span {
+    display: block;
+    font-weight: 800;
+    padding-bottom: 0.4em;
+}
+
 footer > div {
   width: 33.33%;
   float: left;
   color: #949494;
+}
+
+footer > div:last-child {
+    text-align: right;
+    font-size: 0.8em;
+    letter-spacing: 0.04em;
 }
 
 
@@ -63,6 +75,11 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+span.unimportant {
+    color: #B0B0B0;
+}
+
 
 article.project-as-list {
     display: inline-block;
@@ -89,14 +106,69 @@ article.project-as-list div.project-container div.content {
     padding: 0;
 }
 
-article.project-as-list div.project-container div.content img {
+article.project-as-list div.project-container div.content img.image-thumbnail {
     float: left;
+    max-width: 5em;
+    max-height: auto;
+    margin: 0 1em;
+    padding: 0;
 }
 
 
 article.project-as-list footer {
     background-color: #F2F2F2;
     border-top: none;
+}
+
+article.project, article.about {
+
+}
+
+article.project header, article.about header {
+    border-bottom: none;
+}
+
+
+article.project aside, article.about aside { 
+    float: right; 
+    height: 100%;
+    width: 30%;
+    background-color: #F2F2F2;
+    padding: 0.6em;
+    margin-left: 1em;
+}
+
+article.project aside h3, article.about aside h3 {
+    margin: 0; 
+    padding: 0;
+    color: #868686;
+    text-align: center;
+}
+
+article.project div.content, article.about div.content {
+    font-size: 1.1em;
+    line-height: 1.8em;
+}
+
+article.project aside dl, article.about aside dl { 
+    line-height: 1.8em;
+}
+
+article.project aside dt, article.about aside dl { 
+    float: left;
+    clear: left;
+    text-align: right;
+    font-weight: bold;
+    width: 100px;
+}
+
+article.project aside dt:after, article.about aside dt:after {
+    content: ":";
+  }
+
+article.project aside dd, article.about aside dd  { 
+    margin: 0 0 0 110px;110px
+    padding: 0 0 0.5em 0;
 }
 
 
@@ -111,17 +183,17 @@ article.project-as-list footer {
 
    ==================================================================================================== */
  
-section.search {
+section.search-do {
     text-align: center;
 }
 
-section.search input[type=text]{
+section.search-do input[type=text]{
     line-height: 26px !important;
     height: 26px !important;
     width: 80%;
 }
 
-section.search input[type=checkbox]{
+section.search-do input[type=checkbox]{
 
 }
 
@@ -143,67 +215,6 @@ ul.teq-list span {
 section.search-result {
     margin: 1.6em 0 0 0; 
 }
-
-
-
-/* ====================================================================================================
-
-    
-                                                projects.html
-
-
-   ==================================================================================================== */
-   
-div.project {
-    width: 46%; 
-    display: inline-block;
-    vertical-align: top;
-    color: #000 !important; 
-    background-color: #EAEAEA; 
-    margin: 2% 1%;
-    padding: 0;
-    border-radius: 15px 0 15px 0;
-}
-
-div.project > div.project-inner {
-    width: 100%;
-    min-height: 110px;
-} 
-
-div.project > div.project-inner img {
-
-    width: 100px; 
-    height: 100px;
-    float: left;
-    margin: 0em 2em;
-}
-
-div.project > div.meta {
-    padding: 0.3em 0.3em;
-}
-
-div.project > div.meta ul {
-   list-style: none; 
-   margin: 0; 
-   padding: 0;
-}
-
-div.project > div.meta ul > li {
-    display: inline-block;
-    padding: 0.4em;
-    margin: 0.3em;
-    background-color: #000;
-    color: #fff;
-    text-transform: lowercase;
-    min-width: 50px;
-    text-align: center;
-}
-
-div.project > div.meta ul > li:first-child {
-    margin-left: 0;
-}
-
-
 
 
 /*

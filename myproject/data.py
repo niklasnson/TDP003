@@ -49,7 +49,7 @@ def get_techniques(db):
     return temp
 
 def get_technique_stats(db):
-    '''Check which projects that have certain techniques and then  returns the id and name of those projects.'''
+    '''Check which projects that have certain techniques and then returns the id and name of those projects.'''
     techs = get_techniques(db)
     key = ''
     temp = {}

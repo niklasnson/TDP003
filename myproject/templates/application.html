@@ -24,17 +24,19 @@
 
     <footer>
       <div>
-        Niklas Nilsson 
-        gsm: 0734 296310
+        <span>Kontakta mig</span>
+        {{ config.lfooter|safe }}
       </div>
 
       <div>
-        <a href="http://www.github.com/niklasnson">@github</a>
-        <a href="http://www.linkedin.com/niklasnson">@linkedin</a> 
+        <span>Följ mig på</span>
+        {% for item in config.urls.items() %}
+            <a href="{{ item[1] }}">{{ item[0] }}</a>
+        {% endfor %}
       </div>
 
       <div>
-        sista
+          Running desv v0.8 by jessk378 and nikni292
       </div>
     </footer>
   </main>

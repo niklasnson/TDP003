@@ -1,13 +1,32 @@
 {% extends "application.html" %}
 
 {% block content %}
-  
-<article>
-    {{ config.about }}
-</article>
-
-<aside>
-    <h4>Senaste projekten</h4>
-</aside>
-
+ 
+    <article class="project clearfix">
+        <header>
+            <h3>Niklas Nilsson</h3>
+        </header>
+        <aside>
+            <h3>Senaste projekt</h3>
+            <dl>
+                <dt>projekt</dt>
+                <dd><a href="project/{{data.project_no}}">{{ data.project_name }}</a></dd>
+                <dt>kurs</dt>
+                <dd>{{ data.course_id }}</dd>
+                <dt>deltagare</dt>
+                <dd>{{ data.group_size }}</dd>
+                <dt>ap</dt>
+                <dd>{{ data.academic_credits }}</dd>
+                <dt>start datum</dt>
+                <dd>{{ data.start_date }}</dd>
+                <dt>slut datum</dt>
+                <dd>{{ data.end_date }}</dd>
+                <dt>länk</dt>
+                <dd><a href='{{ data.external_link}}'>länk</a></dd>
+            </dl>
+        </aside>
+        <div class="content">
+            {{ config.about|safe }}
+        </div>
+    </article>
 {% endblock %}
