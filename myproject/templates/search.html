@@ -9,7 +9,7 @@
 
         <ul class="teq-list">
             {% for item in technics %}
-            <li><input type="checkbox" name="techniques" value="{{ item.lower() }}"{% if item in techniques %} checked {% endif %}><a href="/search/{{ item.lower() }}">{{ item.lower() }}</a></span></li>
+            <li><input type="checkbox" name="techniques" value="{{ item.lower() }}"{% if item in techniques %} checked {% endif %}><a href="/techniques#{{ item.lower() }}">{{ item.lower() }}</a></span></li>
             {% endfor %}
         </ul>
 

@@ -84,6 +84,7 @@ span.unimportant {
 article.project-as-list {
     display: inline-block;
     width: 49%;
+    vertical-align: top;
 }
 
 article.project-as-list header {
@@ -104,6 +105,8 @@ article.project-as-list div.project-container {
 
 article.project-as-list div.project-container div.content {
     padding: 0;
+    min-height: 190px;
+    line-height: 1.5em;
 }
 
 article.project-as-list div.project-container div.content img.image-thumbnail {
@@ -171,6 +174,15 @@ article.project aside dd, article.about aside dd  {
     padding: 0 0 0.5em 0;
 }
 
+
+article.techniques a.technique {
+    color: #000;
+}
+
+article.techniques a.technique:hover {
+    color: #000;
+    text-decoration: none;
+}
 
 
 

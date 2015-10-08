@@ -32,7 +32,7 @@ def search(db, sort_by='start_date',
    
     search_results = []
     search_results = get_all_data(db, search, search_fields)
-    if search_results != None:
+    if search_results != None:                                  #tilläg
         if techniques != None and techniques != []:
             search_results = techs_used(search_results, techniques)
         sort_data(search_results, sort_by, sort_order)
@@ -49,18 +49,15 @@ def get_techniques(db):
     return temp
 
 def get_technique_stats(db):
-    '''Check which projects that have certain techniques and then returns the id and name of those projects.'''
+    '''Check which projects that have certain techniques and then  returns the id and name of those projects.'''
     techs = get_techniques(db)
     key = ''
     temp = {}
     for item in techs:
         temp.update({item: []})
-        
         for i in db:
             if item in i["techniques_used"]:
-                
                 temp[item].append({'id':i["project_no"], "name":i["project_name"]})
-    
         temp[item] = sorted(temp[item], key=itemgetter('id'))
     return temp
                 
@@ -77,11 +74,15 @@ def get_all_data(db, search, search_fields):
         for i in db:
             for item in i.items():
                 if isinstance(item[1], str):
-                    item[1].lower
-                if item[1] == search:
-                    free_list.append(i)
-                elif item[0] == search:
-                    free_list.append(i)
+                    if item[1].lower() == search.lower():
+                        free_list.append(i)
+                    elif item[0].lower() == search.lower():
+                        free_list.append(i)
+                else:
+                    if item[1] == search:
+                        free_list.append(i)
+                    elif item[0] == search:
+                        free_list.append(i)
 
     elif search_fields == '':
         return None
@@ -99,18 +100,17 @@ def get_all_data(db, search, search_fields):
                     elif isinstance(item[1], str):
                         if item[0].lower() == j.lower() and item[1].lower() == search.lower():
                             free_list.append(project)
-    
-    if free_list != []:
-        return free_list 
+    if free_list != []:                                           #tilläg
+        return free_list
     else: return None
 
+def convert_lower(string):
+    return string.lower()
 
 def sort_data(data, sort_by="project_no", sort_order ='desc'):
     '''this function sorts the data that the search function gathered.'''
-    sort_order = get_sort_order(sort_order)
-    data.sort(key=itemgetter(sort_by), reverse=sort_order)
-    print(data)
-    
+    data.sort(key=itemgetter(sort_by), reverse=(sort_order=='desc'))
+
 def techs_used(search, techs):
     '''this function checks if the projects that the search function gathered have certain techniques.'''
     temp = []
@@ -131,14 +131,12 @@ def get_sort_order(value):
 #------bullshit functions-------
 
 def main():
-    db = load("data.json")
-    #get_project_count(db)
+    db = load("data1.json")
+    print(get_project_count(db))
     #get_project(db, 2)
     #get_techniques(db)
-    #get_technique_stats(db)
-    search(db, sort_by='start_date', 
-           sort_order='desc',
-           techniques=[], search='okänt', search_fields=["project_no","project_name","course_name"])
+    #print(get_technique_stats(db))
+    print(len(search(db, sort_by='start_date', sort_order='desc', techniques=['c++','gimp','git'], search='tetris', search_fields=None)))
 
 
 if __name__ == "__main__":
