@@ -3,6 +3,10 @@ from flask import render_template
 from flask import request
 from flask import url_for
 from flask import redirect
+from flask import abort
+
+import logging 
+from logging.handlers import RotatingFileHandler
 
 import data
 import config
@@ -13,11 +17,13 @@ app = Flask(__name__)
 
 def data_load(): 
     """ loads the db """
+    if data.load('data.json') == None: abort(400)
     return data.load('data.json')
-
+        
 # ---------------------------------------------------------------------------------------------------- #
 
-def config_load(): 
+def config_load():
+    if config.load('config.json') == None: abort(400)
     return config.load('config.json')
 
 # ---------------------------------------------------------------------------------------------------- #
@@ -47,6 +53,16 @@ def projects():
 
 @app.route('/project/<id>')
 def project(id):
+
+    try: id = int(id) 
+    except: 
+        app.logger.error('projektet kunde inte hittas [id]: %s', id)     
+        abort(404,id)
+    
+    if data.get_project(data_load(), id) == None: 
+        app.logger.error('projektet kunde inte hittas [id]: %d', id)  
+        abort(404,id)
+
     return render_template('project.html', 
             data= data.get_project(data_load(), 
                 int(id)), 
@@ -68,6 +84,7 @@ def search():
     # do search
         searchfor= request.form['searchfor']
         techniques = request.form.getlist("techniques")
+        app.logger.info('sökte efter: "%s"', searchfor)
         return render_template('search.html', 
                 config= config_load(), 
                 technics= data.get_techniques(data_load()), 
@@ -87,11 +104,23 @@ def search():
 
 # ---------------------------------------------------------------------------------------------------- #        
 
+@app.errorhandler(400)
+def data_base_not_readable(e):
+    app.logger.error('databasen eller config filen kunde inte läsas')
+    return render_template('data_error.html'), 400
+
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html', config= config_load()), 404
+404
 
 # ---------------------------------------------------------------------------------------------------- #
 
 if __name__ == "__main__":
+    formatter = logging.Formatter( "%(asctime)s | %(funcName)s | %(levelname)s | %(message)s ")
+    handler = RotatingFileHandler('server.log', maxBytes=10000, backupCount=1)
+    handler.setLevel(logging.INFO)
+    handler.setFormatter(formatter)
+    app.logger.addHandler(handler)
     app.run(debug=True)

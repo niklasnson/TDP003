@@ -1,0 +1,13 @@
+2015-10-09 13:25:39,093 | page_not_found | ERROR | Användaren sökte efter en sida som inte fanns 
+2015-10-09 13:49:11,020 | project | ERROR | Databasen eller config filen kunde inte läsas : 42 
+2015-10-09 13:49:32,396 | project | ERROR | Databasen eller config filen kunde inte läsas : hejsan 
+2015-10-09 13:49:44,859 | project | ERROR | Databasen eller config filen kunde inte läsas : kdlsakdlöasklödas 
+2015-10-09 13:49:58,867 | project | ERROR | Databasen eller config filen kunde inte läsas : kdlsakdlöasklödas 
+2015-10-09 13:50:54,225 | project | ERROR | Projektet kunde inte hittas användaren sökte på: kdlsakdlöasklödas 
+2015-10-09 13:51:30,008 | project | ERROR | Projektet kunde inte hittas [id]: kdlsakdlöasklödas 
+2015-10-09 13:51:44,888 | project | ERROR | Projektet kunde inte hittas [id]: 1000 
+2015-10-09 13:51:45,596 | project | ERROR | Projektet kunde inte hittas [id]: 1000 
+2015-10-09 13:52:49,093 | project | ERROR | projektet kunde inte hittas [id]: 1000 
+2015-10-09 13:52:53,484 | project | ERROR | projektet kunde inte hittas [id]: dsds 
+2015-10-09 13:52:57,753 | project | ERROR | projektet kunde inte hittas [id]: dsds 
+2015-10-09 13:55:47,556 | search | INFO | sökte efter: "dsadsadsa" 
