@@ -8,8 +8,10 @@
         <input name="searchfor" type="text" value="{{ searchfor }}">
 
         <ul class="teq-list">
-            {% for item in technics %}
-            <li><input type="checkbox" name="techniques" value="{{ item.lower() }}"{% if item in techniques %} checked {% endif %}><a href="/techniques#{{ item.lower() }}">{{ item.lower() }}</a></span></li>
+            {{ sel_techniques }}
+
+            {% for item in all_techniques %}
+            <li><input type="checkbox" name="techniques" value="{{ item.lower() }}"{% if item.lower() in sel_techniques %} checked {% endif %}><a href="/techniques#{{ item.lower() }}">{{ item.lower() }}</a></span></li>
             {% endfor %}
         </ul>
 

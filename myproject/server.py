@@ -83,24 +83,31 @@ def search():
     if request.method == 'POST':
     # do search
         searchfor= request.form['searchfor']
-        techniques = request.form.getlist("techniques")
-        app.logger.info('sökte efter: "%s"', searchfor)
+        if searchfor== '': 
+            searchfor_db= None
+        else:
+            searchfor_db = searchfor
+            
+
+
+        sel_techniques = request.form.getlist("techniques")
+        app.logger.info('sökte efter: "%s" med "%s"', searchfor, sel_techniques)
         return render_template('search.html', 
                 config= config_load(), 
-                technics= data.get_techniques(data_load()), 
-                techniques = techniques,
-                searchfor = searchfor,
+                all_techniques= data.get_techniques(data_load()), 
+                sel_techniques= sel_techniques,
+                searchfor= searchfor,
                 data= data.search(data_load(), 
                     sort_by='start_date', 
                     sort_order='desc',
-                    techniques=techniques, 
-                    search=searchfor, 
+                    techniques=sel_techniques, 
+                    search=searchfor_db, 
                     search_fields=None))
     else:
     # render default page
         return render_template('search.html', 
                 config= config_load(), 
-                technics= data.get_techniques(data_load())) 
+                all_techniques= data.get_techniques(data_load())) 
 
 # ---------------------------------------------------------------------------------------------------- #        
 

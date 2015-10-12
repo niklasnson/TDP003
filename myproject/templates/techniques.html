@@ -6,8 +6,9 @@
         <a class="technique" name="{{item|lower}}"><h2>{{ item|lower }}</h2></a>
         {% set t = 0 %}
         {% for i in data[item] %}
-        <a href="project/{{ data[item][t]['id'] }}">{{ data[item][t]['name'] }}</a>
-        {% set t = t + 1 %}
+            {% if t != 0 %}, {% endif %}
+            <a href="project/{{ data[item][t]['id'] }}">{{ data[item][t]['name'] }}</a>
+            {% set t = t + 1 %}
         {% endfor %}
     {% endfor %}
 </article>

@@ -2,7 +2,8 @@
 
 {% block content %}
  
-    <article class="project clearfix"> 
+    <article class="project"> 
+
         <header>
             <h1>{{ data.project_name }}</h1>
         </header> 
@@ -12,8 +13,6 @@
                 <dd>{{ data.project_name }}</dd>
                 <dt>kurs</dt>
                 <dd>{{ data.course_id }}</dd>
-                <dt>deltagare</dt>
-                <dd>{{ data.group_size }}</dd>
                 <dt>ap</dt>
                 <dd>{{ data.academic_credits }}</dd>
                 <dt>start datum</dt>
@@ -21,13 +20,19 @@
                 <dt>slut datum</dt>
                 <dd>{{ data.end_date }}</dd>
                 <dt>länk</dt>
-                <dd><a href='{{ data.external_link}}'>länk</a></dd>
+                <dd><a href="{{ data.external_link}}">länk</a></dd>
             </dl>
+            dsdsds
         </aside>
-        <div class="content">
+
+        <p>
             {{ data.long_description }}
-        </div>
+        </p>
     </article>
+
+
+    {{ data }}
+
 {% endblock %}
 
 
