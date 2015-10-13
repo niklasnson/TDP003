@@ -32,7 +32,8 @@ def search(db, sort_by='start_date',
    
     search_results = []
     search_results = get_all_data(db, search, search_fields)
-    if search_results != None:                                  #tilläg
+    if search_results != None: #tilläg
+        
         if techniques != None and techniques != []:
             search_results = techs_used(search_results, techniques)
         sort_data(search_results, sort_by, sort_order)
@@ -74,10 +75,19 @@ def get_all_data(db, search, search_fields):
         for i in db:
             for item in i.items():
                 if isinstance(item[1], str):
-                    if item[1].lower() == search.lower():
-                        free_list.append(i)
-                    elif item[0].lower() == search.lower():
-                        free_list.append(i)
+                    words_search = item[1].split()
+                    if isinstance(search, str):
+                        key_words = search.split()
+                    else:
+                        key_words = search
+                    for s_word in words_search:
+                        for k_word in key_words: 
+                            if s_word.lower() == k_word.lower():
+                                if i not in free_list:
+                                    free_list.append(i)
+                            elif item[0].lower() == k_word.lower():
+                                if i not in free_list:
+                                    free_list.append(i)
                 else:
                     if item[1] == search:
                         free_list.append(i)
@@ -101,6 +111,7 @@ def get_all_data(db, search, search_fields):
                         if item[0].lower() == j.lower() and item[1].lower() == search.lower():
                             free_list.append(project)
     if free_list != []:                                           #tilläg
+        print(len(free_list))
         return free_list
     else: return None
 
@@ -131,12 +142,12 @@ def get_sort_order(value):
 #------bullshit functions-------
 
 def main():
-    db = load("data1.json")
+    db = load("data.json")
     print(get_project_count(db))
     #get_project(db, 2)
     #get_techniques(db)
     #print(get_technique_stats(db))
-    print(len(search(db, sort_by='start_date', sort_order='desc', techniques=['c++','gimp','git'], search='tetris', search_fields=None)))
+    print(len(search(db, sort_by='start_date', sort_order='desc', techniques=None, search='tetris', search_fields=None)))
 
 
 if __name__ == "__main__":
