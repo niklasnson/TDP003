@@ -2,7 +2,7 @@
 
 {% block content %}
  
-    <article class="project"> 
+    <article class="project clearfix"> 
 
         <header>
             <h1>{{ data.project_name }}</h1>
@@ -22,16 +22,12 @@
                 <dt>länk</dt>
                 <dd><a href="{{ data.external_link}}">länk</a></dd>
             </dl>
-            dsdsds
         </aside>
 
         <p>
             {{ data.long_description }}
         </p>
     </article>
-
-
-    {{ data }}
 
 {% endblock %}
 
