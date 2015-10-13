@@ -63,16 +63,9 @@ def get_technique_stats(db):
     return temp
                 
 #---------homemade functions-------
-
-def get_all_data(db, search, search_fields):
-    '''This is a sub function to the search function. This function search the database for the keyword entered.'''
+def search_field_none(db, search):
     free_list = []
-    i = 0
-    if search == None and search_fields == None:
-        return db
-
-    if search_fields == None:
-        for i in db:
+    for i in db:
             for item in i.items():
                 if isinstance(item[1], str):
                     words_search = item[1].split()
@@ -94,11 +87,11 @@ def get_all_data(db, search, search_fields):
                     elif item[0] == search:
                         free_list.append(i)
 
-    elif search_fields == '':
-        return None
+    return free_list
 
-    else:
-        for project in db:
+def search_field_given(db, search):
+    free_list = []
+    for project in db:
             for item in project.items():
                 for j in search_fields:
                     if isinstance(item[1], int):
@@ -110,8 +103,22 @@ def get_all_data(db, search, search_fields):
                     elif isinstance(item[1], str):
                         if item[0].lower() == j.lower() and item[1].lower() == search.lower():
                             free_list.append(project)
+    return free_list
+
+def get_all_data(db, search, search_fields):
+    '''This is a sub function to the search function. This function search the database for the keyword entered.'''
+    free_list = []
+    i = 0
+    if search == None and search_fields == None:
+        return db
+    if search_fields == None:
+        free_list = search_field_none(db, search)
+    elif search_fields == '':
+        return None
+    else:
+        free_list = search_field_given(db, search)
+
     if free_list != []:                                           #tilläg
-        print(len(free_list))
         return free_list
     else: return None
 
