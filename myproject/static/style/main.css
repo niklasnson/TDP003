@@ -85,11 +85,14 @@ article.project-as-list {
     display: inline-block;
     width: 49%;
     vertical-align: top;
+    padding-bottom: 0.8em;
 }
 
 article.project-as-list header {
     background-color: #F9F9F9;
     border-bottom: none;
+    padding: 0.8em; 
+    margin: 0;
 }
 
 article.project-as-list a {
@@ -104,9 +107,13 @@ article.project-as-list div.project-container {
 }
 
 article.project-as-list div.project-container div.content {
-    padding: 0;
     min-height: 190px;
+    max-height: 190px;
+    overflow-y: scroll;
     line-height: 1.5em;
+    border-left: 2px solid #F9F9F9;
+    border-right: 2px solid #F9F9F9;
+    padding: 0.8em; 
 }
 
 article.project-as-list div.project-container div.content img.image-thumbnail {
@@ -121,6 +128,8 @@ article.project-as-list div.project-container div.content img.image-thumbnail {
 article.project-as-list footer {
     background-color: #F2F2F2;
     border-top: none;
+    padding: 0.8em; 
+    margin: 0;
 }
 
 article.project, article.about {
@@ -129,6 +138,8 @@ article.project, article.about {
 
 article.project header, article.about header {
     border-bottom: none;
+    padding: 0; 
+    margin: 0;
 }
 
 
@@ -153,11 +164,19 @@ article.project div.content, article.about div.content {
     line-height: 1.8em;
 }
 
+article.project div.content img, article.about div.content img{
+    float: left;
+    max-width: 300px;
+    min-width: 200px;
+    height: auto;
+    margin-right: 0.8em;
+}
+
 article.project aside dl, article.about aside dl { 
     line-height: 1.8em;
 }
 
-article.project aside dt, article.about aside dl { 
+article.project aside dt, article.about aside dt { 
     float: left;
     clear: left;
     text-align: right;

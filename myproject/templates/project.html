@@ -23,10 +23,12 @@
                 <dd><a href="{{ data.external_link}}">länk</a></dd>
             </dl>
         </aside>
-
-        <p>
+        <div class="content">
+            {% if data.big_image != '' %}
+                <img id='big_image' src='{{ data.big_image }}'>
+            {% endif %}
             {{ data.long_description }}
-        </p>
+        </div>
     </article>
 
 {% endblock %}
